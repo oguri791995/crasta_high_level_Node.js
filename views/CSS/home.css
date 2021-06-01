@@ -1,0 +1,511 @@
+/* base */
+
+html,body{
+    font-size: 62.5%;
+    margin: 0;
+    height: 100%;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.displayNone{
+    display: none;
+}
+.displayNone-pc{
+    display: none;
+}
+
+.opacity:hover{
+    opacity: 50%;
+    transition: 0.5s;
+}
+/* header */
+header{
+    position: relative;
+    color: #fff;
+}
+.header-inner{
+    display: flex;
+    justify-content: space-between;
+    /* margin: 2vw 0 0 4vw; */
+
+}
+.header-title{
+    margin: 3.0rem 0 0 4.02vw;
+}
+.header-humberger{
+    display: flex;
+    margin: 4.0rem 4.02vw 0 0;
+    z-index: 1;
+}
+.humberger-inner{
+    display: flex;
+}
+.humberger-ul ul{
+
+} 
+.humberger-item{
+    content: "";
+    background-color: #fff;
+    width: 2.2rem;
+    margin-bottom: 3px;
+    height: 3px;
+}
+.humberger-title{
+    padding-left: .7rem;
+}
+/* first-view */
+.first-view{
+    height: 100vh;
+}
+.fv-inner{
+    color: #fff;
+    float: right;
+    margin-top: 6.8vw;
+    margin-right: 13.4vw;
+}
+.fv-small-text{
+    font-size: 2.0rem;
+    font-weight: bold;
+    
+}
+.fv-text-jp{
+    font-family: YuGothic;
+}
+.fv-text-en{
+    font-family: Montserrat Medium;
+}
+.fv-load{
+    font-size: 7.2rem;
+    font-weight: bold;
+    font-family: Montserrat;
+}
+.fv-img-pc,.fv-img-sp{
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    
+}
+.fv-img-pc img{
+    width: 76vw;
+    
+}
+.fv-background{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    background-color: #222222;
+    padding-bottom: 51vw;
+    padding-left: 50vw;
+    z-index: -2;
+}
+/* main */
+section>.about,
+section>.latest-topics{
+    margin: 0 17.0rem;
+}
+.title{
+    font-size: 3.2rem;
+    font-weight: bold;
+    font-family: Montserrat;
+}
+.read-more a{
+    padding: .9rem 4.8rem 1.1rem 4.1rem;
+    background-color: black;
+    color: #fff;
+    display: inline-block;
+}
+.read-more a:hover{
+    opacity: 80%;
+    transition: 0.5s;
+}
+/* about */
+.about{
+    padding-top: 12.0rem;
+    height: 100vh;
+}
+.about-img{
+    position: relative;
+}
+.about-img img{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.about-inner{
+    position: absolute;
+    top: 0;
+    margin: 6vw 0 0 5.0rem;
+    padding: 5.0rem 3.0rem 0 3.0rem;
+    width: 40vw;
+    background-color: #fff;
+    opacity: 95%;
+}
+
+.about-text{
+    font-size: 1.6rem;
+    font-family: Noto Sans JP;
+    margin-bottom: 4vw;
+}
+.about-link a{
+
+    margin-bottom: 5.0rem;
+}
+
+
+/* works-culuture */
+.works-culture{
+
+    position: relative;
+    height: 100vh;
+}
+.wc-contents{
+    display: flex;
+    margin: 8.0rem 17.0rem 6.0rem 17.0rem;
+}
+.wc-img{
+    margin-top: 3.0rem;
+}
+.wc-img img{
+    width: 100%;
+}
+.wc-text{
+    font-size: 1.6rem;
+    font-family: YuGothic;
+    margin-top: 2.7rem;
+    margin-bottom: 2.8rem;
+}
+.works{
+    margin-right: 6.0rem;
+}
+.wc-background{
+    background-color: #f0f0f0;
+    position: absolute;
+    top: -20rem;
+    width: 100%;
+    height: 130vh;
+    z-index: -1;
+}
+/* latest topics */
+.latest-topics{
+}
+.lp-inner{
+margin: 6.0rem 0;
+}
+.lp-content{
+    /* float: right; */
+    padding-left: 30vw;
+}
+.lp-date{
+    font-size: 1.0rem;
+    font-weight: bold;
+    font-family: Montserra Medium;
+    color: #cecece;
+    margin:3.0rem 0 .9rem 0;
+}
+
+.lp-news{
+    font-size: 1.4rem;
+    font-family: YuGothic;
+    font-weight: bold;
+    color: #333333;
+    border-bottom: solid 1px #DDDDDD;
+}
+.lp-link{
+    clear: both;
+    float: right;
+    margin: 3.0rem 0 6.0rem 0;
+}
+/* contact */
+.contact{
+    position: relative;
+    /* padding-top: 6.0rem; */
+    clear: both;
+}
+.contact-contents{
+    padding: 6.0rem 0 12.0rem 0;
+    display: flex;
+    margin: 0rem 17.0rem 0 17.0rem;
+
+}
+.contact-inner{
+    margin:10.0rem 8.0rem 0 0;
+}
+.contact-title{
+    margin-bottom: 3.0rem;
+}
+.contact-text{
+    margin-bottom: 3.0rem;
+    font-size: 1.6rem;
+    font-family: YuGothic;
+}
+.contact-img{
+
+}
+.contact-img img{
+    width: 100%;
+}
+.contact-background{
+    position: absolute;
+    top: 0;
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+}
+/* footer */
+.footer-text{
+    color: #FFF;
+    font-size: 1.0rem;
+    font-family: Montserra Medium;
+    background-color: #525252;
+    text-align: center;
+    padding: 1.8rem 0;
+}
+
+/* humberger */
+
+.header-humberger{
+    cursor: pointer;
+}
+.top-bar-click{
+    transform: rotate(45deg) translate(0,8.5px);
+    transition: .5s;
+}
+.middle-bar-click{
+    opacity: 0;
+}
+.bottom-bar-click{
+    transform: rotate(-45deg) translate(0,-8.5px);
+    transition: .5s;
+}
+.nav-fadeIn{
+    animation: fadeIn 0.3s linear 0s 1 normal;
+}
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+.nav-menu{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #222222;
+    opacity: 95%;
+    padding-bottom: 100%;
+}
+.nav-img{
+    margin-bottom: 4.0rem;
+    text-align: center;
+    margin-top: 11.8vw;
+}
+.nav-wrapper{
+    width: 52.0rem;
+    background-color: #222222;
+    opacity: 95%;
+}
+.nav-item{
+    font-size: 2.0rem;
+    font-weight: bold;
+    font-family: Montserrat;
+    margin-bottom: 3.0rem;
+    text-align: center;
+}
+.full-background{
+    position: absolute;
+    top: 0;
+    background-color: #222222;
+    opacity: 60%;
+    width: 100vw;
+    height: 1000px;
+}
+.noScroll{
+    overflow: hidden;
+}
+/* タブレット */
+@media screen and (max-width: 1024px) {
+/* base */
+    .displayNone-pc{
+        display: inline;
+    }
+    .displayNone-sp{
+        display: none;
+    }
+/* first-view */
+    .first-view{
+        height: 102.4rem;
+
+    }
+    .fv-background{
+        padding-bottom: 102.4rem;
+        padding-left: 75.4vw;
+    }
+    section>.about{
+        margin: auto;
+        height: 100vh;
+    }
+/* about */
+    .about-img{
+        width: 100%;
+    }
+    .about-img img{
+        width: 100%;
+    }
+    .about-inner{
+        margin: auto;
+        left: 0;
+        right: 0;
+        margin-top: 5.0rem;
+    }
+/* works-culture */
+    .works-culture{
+        height: 1300px;
+    }
+    .wc-contents{
+        display: inline-block;
+        margin: 6.0rem 0 0 3.0rem;
+    }
+    .culture{
+        margin-top: 8.0rem;
+    }
+    .wc-background{
+        height: 1300px;
+        top: 0;
+    }
+/* latest topics */
+    section>.latest-topics{
+       margin: 0 3.0rem; 
+    }
+    .lp-content{
+        padding: 0;
+    }
+    .lp-link{
+        float: none;
+    }
+/* contact */
+    .contact-contents{
+        display: inline;
+        margin: auto;
+    }
+    .contact-img img{
+        width: 52.0rem;
+        margin: 4.0rem 0 0 3.0rem;
+    }
+    .contact-inner{
+        width: 52.0rem;
+        margin: 3.0rem 0 0 3.0rem;
+        padding-bottom: 8.0rem;
+    }
+}
+@media screen and (max-width:768px){
+    .header-title img{
+        width: 60vw;
+    }
+    .header-humberger{
+    }
+    .nav-menu{
+        position: absolute;
+        right: 0;
+        left: 0;
+    }
+    .nav-wrapper{
+        width: auto;
+    }
+ 
+    .first-view{
+        height: 177.8vw;
+    }
+    .fv-inner{
+        margin-top: 13.45rem;
+        margin-right: 7.27vw;
+    }
+    .fv-small-text{
+        font-size: 1.6rem;
+    }
+    .fv-load{
+        font-size: 5.6rem;
+    }
+    .fv-img-sp img{
+        width: 76.5vw;
+        height: 154.6vw;
+        object-fit: cover;
+    }
+    .fv-background{
+        padding-bottom: 177.8vw;
+    }
+    section>.about{
+        height: 144.2vw;
+        height: 100%;
+    }
+    .about{
+        padding-top: 0;
+        height: 144.2vw;
+    }
+    .about-img{
+        overflow: hidden;
+
+    }
+    .about-img img{
+        height: 144.2vw;
+        width: auto;
+        height: 100%;
+
+    }
+    .about-inner{
+        width: auto;
+        margin: 5.0rem 1.5rem 0 1.5rem;
+        /* height: 117.6vw; */
+    }
+    .about-text{
+        font-size: 1.4rem;
+        margin-top: 3.0rem;
+    }
+    .about-link{
+        margin-top: 3.0rem;
+    }   
+    .works-culture{
+        height:268vw;
+    }
+    .wc-contents{
+        margin: auto;
+        margin: 0 1.5rem 0 1.5rem;
+    }
+    .works{
+        margin: auto;
+        margin-top: 4.0rem;
+    }
+    .wc-background{
+        height:268vw;
+    }
+    .contact-contents{
+        margin: auto;
+    }
+    .contact-img{
+        /* width: auto; */
+        /* margin: 4.0rem 1.5rem 0 1.5rem; */
+
+    }
+    .contact-img img{
+        width: 92%;
+        margin: auto;
+        margin: 4.0rem 1.5rem 0 1.5rem;
+    }
+    .contact-inner{
+        width: 92%;
+        margin: 4.0rem 1.5rem 0 1.5rem;
+    }
+}
