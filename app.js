@@ -1,7 +1,10 @@
 const http = require("http");
 const fs = require("fs");
 const hostname = "127.0.0.1";
-const port = 8080
+const port = 8080;
+
+const crastaDB = require("./DB/crastaDB.js");
+const db = new crastaDB();
 
 const server = http.createServer();
 server.on("request",doRequest);
@@ -15,7 +18,37 @@ console.log("server running");
 function doRequest(req,res){
     let type = getType(req);
     let routeDir = switchDir(req.url)
+    formTreat(req)
     switchType(req,res,type,routeDir);
+}
+
+/** 
+ * form処理
+*/
+function formTreat(req){
+    if(req.method == "POST"){
+        let data ="";
+        req.on("data",function(chunk){
+            data += chunk
+        }).on("end",function(){
+            DBinsert(data)
+        })
+    }
+}
+/**
+ * DB登録
+ */
+
+function DBinsert(data){
+    dataArray = data.split("&");
+    dataItems = [];
+    for(let i=0; i<dataArray.length; i++){
+        decodeItem = decodeURIComponent(dataArray[i].split("=")[1]);
+        dataItems.push(decodeItem);
+    } 
+    db.masterInsert(dataItems[0],dataItems[1],dataItems[2],dataItems[3],dataItems[4],dataItems[5]);
+
+    console.log(dataItems);
 }
 
 /**
@@ -72,14 +105,14 @@ function switchType(req,res,type,routeDir){
         case "svg":
             fs.readFile(`./views${req.url}`,"binary",function(err,data){
                 res.writeHead(200,{"Content-Type":"image/svg+xml"});
-                res.write(data,"binary"); //２つの目引数はデフォルトでutf-8
+                res.write(data,"binary"); //２つの目引数はデフォルトでutf-8 https://nodejs.org/api/http.html#http_request_write_chunk_encoding_callback
                 res.end();
             });
             break;
         case "jpg":
             fs.readFile(`./views${req.url}`,"binary",function(err,data){
                 res.writeHead(200,{"Content-Type":"image/jpeg"});
-                res.write(data,"binary"); //２つの目引数はデフォルトでutf-8
+                res.write(data,"binary"); //２つの目引数はデフォルトでutf-8 https://nodejs.org/api/http.html#http_request_write_chunk_encoding_callback
                 res.end();
             })
             break;
