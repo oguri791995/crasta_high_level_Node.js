@@ -24,15 +24,29 @@ class crastaDB {
             let stmt = db.prepare("insert into master(contact_type,company,name,email,tel,contact_msg) values(?,?,?,?,?,?)");
             stmt.run([contactRadio,company,name,email,tel,contactMsg]);
             stmt.finalize();
-
            console.log("入力データを登録しました。") 
         });
         db.close();
     }
-    
-}
 
-// let cdb = new crastaDB();
-// cdb.masterInsert("aaa","bbb","ccc","ddd",1234,"eee");
+    /**
+     * SQL文返す。
+     */
+    showDB(sql){
+        let db = new sqlite.Database("./DB/crastaDB");
+
+        return new Promise(function(resolve,reject){
+            db.serialize(function(){
+                db.all(sql,function(err,data){
+                     resolve(data);
+                })
+                
+            })
+            db.close();
+        })
+
+        
+    }
+}
 
 module.exports = crastaDB;

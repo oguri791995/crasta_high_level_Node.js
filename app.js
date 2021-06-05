@@ -4,6 +4,7 @@ const hostname = "127.0.0.1";
 const port = 8080;
 
 const crastaDB = require("./DB/crastaDB.js");
+
 const db = new crastaDB();
 
 const server = http.createServer();
@@ -11,6 +12,22 @@ server.on("request",doRequest);
 server.listen(port);
 console.log("server running");
 
+let serchDB = db.showDB("select * from master");
+console.log(serchDB);
+
+/**
+ * DBからの抽出データをjsonファイルに書き込む
+ */
+function createJSON(jsonDB){
+    return new Promise(function(resolve,reject){
+        console.log(jsonDB);
+        jsonDB.then(function(result){
+            fs.writeFile("response.json",JSON.stringify(result),function(){
+            });
+        })
+        resolve();
+    })
+}
 
 /**
  * リクエスト処理
@@ -19,7 +36,9 @@ function doRequest(req,res){
     let type = getType(req);
     let routeDir = switchDir(req.url)
     formTreat(req)
+
     switchType(req,res,type,routeDir);
+
 }
 
 /** 
@@ -84,9 +103,10 @@ function getType(req){
     
 }
 /**
- * ブラウザからのリクエストurlを元にファイルを返す。
+ * ブラウザからのリクエストurlを元にファイルをレスポンス。
  */
 function switchType(req,res,type,routeDir){
+
     switch(type){
         case "/":
             fs.readFile(`./views/HTML${routeDir}`,"utf-8",function(err,data){
@@ -94,6 +114,23 @@ function switchType(req,res,type,routeDir){
                 res.write(data);
                 res.end();
             }); 
+            break;
+        case "txt":
+            // fs.readFile(`./views/test/${req.url}`,"utf-8",function(err,data){
+            fs.readFile(`./views/${req.url}`,"utf-8",function(err,data){
+                res.writeHead(200,{"Content-Type":"text/plain"});
+                res.write(data);
+                res.end();
+            }); 
+            break;
+        case "json":
+            createJSON(serchDB).then(function(){
+                fs.readFile(`.${req.url}`,"utf-8",function(err,data){
+                    res.writeHead(200,{"Content-Type":"application/json"});
+                    res.write(data);
+                    res.end();
+                })
+            });
             break;
         case "css":
             fs.readFile(`./views${req.url}`,"utf-8",function(err,data){
