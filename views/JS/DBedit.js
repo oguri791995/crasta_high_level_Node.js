@@ -15,7 +15,7 @@ let fetchData ;
  */
 fetch("../../response.json").then(function(response){
     response.text().then(function(text){
-        if(text === ""){
+        if(text === "" ){
             location.reload() //※1
         }
         if(JSON.parse(text)){

@@ -23,7 +23,7 @@ function createJSON(jsonDB){
         jsonDB.then(function(result){
             fs.writeFile("response.json",JSON.stringify(result),function(){
             });
-        })
+        });
         resolve();
     })
 }
