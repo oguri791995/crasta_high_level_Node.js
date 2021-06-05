@@ -16,19 +16,12 @@ let serchDB = db.showDB("select * from master");
 
 /**
  * DBからの抽出データをjsonファイルに書き込む
- * 
- * ※writeFileではなく、writeFileSyncを使う理由：
- * フロント側でjsonファイルを読み取るとき、
- * jsonファイルが完成する前に読み込んでしまい、
- * フロント側のjsonが空になることもあるため。
- * これはフロント側のfetchもこの関数も非同期であるため、
- * 処理の順番しだいで発生すると考えられる。
  */
 function createJSON(jsonDB){
     return new Promise(function(resolve,reject){
         console.log(jsonDB);
         jsonDB.then(function(result){
-            fs.writeFileSync("response.json",JSON.stringify(result),function(){
+            fs.writeFile("response.json",JSON.stringify(result),function(){
             });
         })
         resolve();
