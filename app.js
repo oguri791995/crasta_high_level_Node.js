@@ -12,21 +12,23 @@ server.on("request",doRequest);
 server.listen(port);
 console.log("server running");
 
-let serchDB = db.showDB("select * from master");
+let sql = "select * from master"
 
 /**
  * DBからの抽出データをjsonファイルに書き込む
  */
-function createJSON(jsonDB){
+function createJSON(){
+    let jsonDB = db.showDB(sql);
     return new Promise(function(resolve,reject){
         console.log(jsonDB);
         jsonDB.then(function(result){
-            fs.writeFile("response.json",JSON.stringify(result),function(){
+            fs.writeFileSync("response.json",JSON.stringify(result),function(){
             });
         });
         resolve();
     })
 }
+
 
 /**
  * リクエスト処理
@@ -35,7 +37,6 @@ function doRequest(req,res){
     let type = getType(req);
     let routeDir = switchDir(req.url)
     formTreat(req)
-
     switchType(req,res,type,routeDir);
 
 }
@@ -103,6 +104,7 @@ function getType(req){
 }
 /**
  * ブラウザからのリクエストurlを元にファイルをレスポンス。
+ * レスポンスを返した後にjsonファイルが作成されるっぽい
  */
 function switchType(req,res,type,routeDir){
 
@@ -123,13 +125,14 @@ function switchType(req,res,type,routeDir){
             }); 
             break;
         case "json":
-            createJSON(serchDB).then(function(){
-                fs.readFile(`.${req.url}`,"utf-8",function(err,data){
-                    res.writeHead(200,{"Content-Type":"application/json"});
-                    res.write(data);
-                    res.end();
-                })
-            });
+                createJSON().then(function(){ //※1
+                    fs.readFile(`.${req.url}`,"utf-8",function(err,data){
+                        res.writeHead(200,{"Content-Type":"application/json"});
+                        res.write(data);
+                        res.end();
+                    })
+                });
+
             break;
         case "css":
             fs.readFile(`./views${req.url}`,"utf-8",function(err,data){
