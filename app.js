@@ -5,6 +5,8 @@ const port = 8080;
 
 const crastaDB = require("./DB/crastaDB.js");
 
+let requestSQL ;
+
 const db = new crastaDB();
 
 const server = http.createServer();
@@ -17,16 +19,12 @@ let sql = "select * from master"
 /**
  * DBからの抽出データをjsonファイルに書き込む
  */
-function createJSON(){
+async function createJSON(){
     let jsonDB = db.showDB(sql);
-    return new Promise(function(resolve,reject){
-        console.log(jsonDB);
-        jsonDB.then(function(result){
+        await jsonDB.then(function(result){
             fs.writeFileSync("response.json",JSON.stringify(result),function(){
             });
         });
-        resolve();
-    })
 }
 
 
@@ -39,6 +37,7 @@ function doRequest(req,res){
     formTreat(req)
     switchType(req,res,type,routeDir);
 
+    // console.log(decodeURIComponent(req.url));
 }
 
 /** 
@@ -74,12 +73,12 @@ function DBinsert(data){
  * route処理
  */
 function switchDir(url){
-    let path = url;
-    fileType = path.split(".");
+    let dir
+    fileType = url.split(".");
+
     if(fileType[1]){
         return
     }
-    let dir
     if(url == "/"){
         dir = "/home";
     }else{
@@ -88,20 +87,35 @@ function switchDir(url){
     return dir + "/index.html";
 }
 
-
 /**
-リクエストurlの拡張子を返す
-*/
+ * 
+ * リクエストurlの拡張子を返す
+ * SQL文なら正規のSQL文に変換し、返す。
+ * 
+ */
+
 function getType(req){
     let path = req.url;
+    BooleanSQL = path.indexOf("sql");
     fileType = path.split(".");
-    if(!fileType[1]){  //top画面ではpathは"/"なのでfileType[1]は存在しない
+
+    if(BooleanSQL === 1){ //SQL文は正規の文に変換して返す。
+        return "sql";
+    }
+
+    if(!fileType[1] && BooleanSQL == -1){  //top画面ではpathは"/"なのでfileType[1]は存在しない
         return "/"  
     }else{
         return fileType[1];
     }
     
 }
+
+function sqlDelete(id){
+    let sql = `delete from master where id = ${id}`;
+    db.delSQL(sql);
+}
+
 /**
  * ブラウザからのリクエストurlを元にファイルをレスポンス。
  * レスポンスを返した後にjsonファイルが作成されるっぽい
@@ -161,6 +175,16 @@ function switchType(req,res,type,routeDir){
                 res.write(data);
                 res.end();
             })
+            break;
+        case "sql":
+            let sqlPart = decodeURIComponent(req.url).split("_");
+            if(sqlPart[1] === "del"){
+                sqlDelete(sqlPart[2]);
+            }
+    
+            break;
+        default:
+            return;
     }
 
 }
