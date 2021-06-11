@@ -1,0 +1,67 @@
+/* base */
+html,body{
+    margin: 0;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.background{
+    position: fixed;
+    background-color: #525252;
+    width: 100vw;
+    height: 100vh;
+    opacity: 70%;
+}
+.popup{
+    position: relative;
+    animation: fadeIn 0.3s linear 0s 1 normal;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+.edit-form{
+    opacity: 100%;
+    position: absolute;
+    margin: 20px 0 0 20px;
+    background-color: lightblue;
+    width: 45vw;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.displayNone{
+    display: None;
+}
+
+
+.x-button{
+    display: inline-block;
+    position: absolute;
+    top: 5%;
+    right: 10%;
+}
+
+.button-line{
+    height: 3px;
+    width: 20px;
+    background-color: #525252;
+    margin-bottom: 5px;
+    border-radius: 30px;
+}
+.line-1{
+    transform: translate(0,8px) rotate(45deg) ;
+}
+.line-2{
+    transform: rotate(-45deg);
+}

@@ -48,11 +48,28 @@ class crastaDB {
         })
     }
 
+    /**
+     * DBレコード削除
+     */
     delSQL(sql){
         let db = new sqlite.Database(dbURL);
         db.serialize(function(){
             db.run(sql);
             console.log("レコードを削除しました。");
+        })
+        db.close();
+    }
+
+    /**
+     * DBレコード更新
+     */
+    updateRecord(id,contactRadio,company,name,email,tel,contactMsg){
+        let db = new sqlite.Database(dbURL);
+        db.serialize(function(){
+            let stmt = db.prepare(`update master set contact_type=?,company=?,name=?,email=?,tel=?,contact_msg=? where id = ?`)
+            stmt.run([contactRadio,company,name,email,tel,contactMsg,id]);
+            stmt.finalize();
+            console.log("レコードを編集しました。");
         })
         db.close();
     }

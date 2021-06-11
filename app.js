@@ -45,14 +45,48 @@ function doRequest(req,res){
 */
 function formTreat(req){
     if(req.method == "POST"){
-        let data ="";
-        req.on("data",function(chunk){
-            data += chunk
-        }).on("end",function(){
-            DBinsert(data)
-        })
+
+        if(req.url === "/"){
+            let data ="";
+            req.on("data",function(chunk){
+                data += chunk
+            }).on("end",function(){
+                console.log(req.url);
+                DBinsert(data)
+            })
+        }
+
+        if(req.url === "/DBedit"){
+            console.log("レコード更新");
+            if(req.url === "/DBedit"){
+                let data ="";
+                req.on("data",function(chunk){
+                    data += chunk
+                }).on("end",function(){
+                    RecordUpdate(data);
+                })
+            }
+        }
+
     }
 }
+
+/**
+ * DBレコード更新
+ */
+
+function RecordUpdate(data){
+    dataArray = data.split("&");
+    dataItems = [];
+    for(let i=0; i<dataArray.length; i++){
+        decodeItem = decodeURIComponent(dataArray[i].split("=")[1]);
+        dataItems.push(decodeItem);
+    } 
+    db.updateRecord(dataItems[0],dataItems[1],dataItems[2],dataItems[3],dataItems[4],dataItems[5],dataItems[6]);
+
+    console.log(dataItems);
+}
+
 /**
  * DB登録
  */
@@ -181,7 +215,7 @@ function switchType(req,res,type,routeDir){
             if(sqlPart[1] === "del"){
                 sqlDelete(sqlPart[2]);
             }
-    
+
             break;
         default:
             return;
