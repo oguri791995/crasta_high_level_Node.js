@@ -23,23 +23,23 @@
                 </div>
                 <div class="company-name contact-item">
                     <label for="" >会社名・団体名</label><br>
-                    <input type="text" name="company" id="aaa">
+                    <input type="text" name="company" id="aaa" placeholder="株式会社crasta">
                 </div>
                 <div class="name contact-item">
-                    <label for="" class="required">お名前</label><br>
-                    <input type="text" name="name">
+                    <label for="" class="required" >お名前</label><br>
+                    <input type="text" name="name" placeholder="佐藤 太郎" required>
                 </div>
                 <div class="e-mail contact-item">
                     <label for="" class="required">メールアドレス</label><br>
-                    <input type="text" name="email">
+                    <input type="text" name="email" placeholder="test@test.com" required pattern="[\w\-\.]*@[\w\-\.]*\.[\w\-\.]*">
                 </div>
                 <div class="tel contact-item">
                     <label for="">電話番号</label><br>
-                    <input type="text" name="tel">
+                    <input type="text" name="tel" pattern="0[0-9]{1,4}[0-9]{1,4}[0-9]{4}" placeholder="「-」は含めないで入力。　例) 09012341234">
                 </div>
                 <div class="contact-contents contact-item">
                     <label for="" class="required">お問い合わせ内容</label><br>
-                    <textarea name="contact-msg" id="" cols="30" rows="10"></textarea>
+                    <textarea name="contact-msg" id="" cols="30" rows="10" maxlength="300" placeholder="300文字以内で入力してください" required></textarea>
                 </div>
                 <div class="edit">
                     <input type="submit" value="変更">

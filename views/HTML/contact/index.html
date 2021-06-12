@@ -88,19 +88,19 @@
                         </div>
                         <div class="name contact-item">
                             <label for="" class="required">お名前</label><br>
-                            <input type="text" name="name">
+                            <input type="text" name="name" required>
                         </div>
                         <div class="e-mail contact-item">
                             <label for="" class="required">メールアドレス</label><br>
-                            <input type="text" name="email">
+                            <input type="text" name="email" required pattern="[\w\-\.]*@[\w\-\.]*\.[\w\-\.]*">
                         </div>
                         <div class="tel contact-item">
                             <label for="">電話番号</label><br>
-                            <input type="text" name="tel">
+                            <input type="text" name="tel" pattern="0[0-9]{1,4}[0-9]{1,4}[0-9]{4}" placeholder="「-」は含めないで入力。　例) 09012341234">
                         </div>
                         <div class="contact-contents contact-item">
                             <label for="" class="required">お問い合わせ内容</label><br>
-                            <textarea name="contact-msg" id="" cols="30" rows="10"></textarea>
+                            <textarea name="contact-msg" id="" cols="30" rows="10" maxlength="300" placeholder="300文字以内で入力してください" required></textarea>
                         </div>
                         <div class="policy contact-item">
                             <label for="">PRIVACY POLICY</label><br>
@@ -135,7 +135,7 @@
                             </textarea>
                         </div>
                         <div class="agree">
-                            <label for="agree"><input type="checkbox" id="agree" name="agree">
+                            <label for="agree"><input type="checkbox" id="agree" name="agree" required>
                                 <span>個人情報の取り扱いについて同意のうえ送信します。</span>
                             </label><br>
                         </div>
